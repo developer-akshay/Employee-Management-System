@@ -69,7 +69,9 @@ app.post("/register", (req, res) => {
     })
 })
 app.post('/addEmployee', (req, res) => {
+    //Naming convention like first word in small letters and second continued word with first letter caps and then in small letters
     const { firstname, lastname, selectdesignation, emailid, notes } = req.body
+    //remove console
     console.log(req.body);
     Emp.findOne({ emailid: emailid }, (err, user) => {
 
@@ -93,12 +95,16 @@ app.listen(9001, () => {
     console.log("BE started at port 9001")
 })
 app.put('/checkIn', async (req, res) => {
+    //remove console
     console.log("sdff", req.body)
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         var dbo = db.db("demodatabase");
         var myquery = { emailid: req.body.Email };
         var newvalues = { $set: { notes: req.body.notes, checkin: req.body.checkin } };
+        
+        //Remove unnecessary code which is not used 
+        
         // var myqueryy = { emailid: req.body.Email };
         // var newvaluess = { $set: {notess: req.body.notess } };
         dbo.collection("emps").updateOne(myquery, newvalues, function (err, result) {
@@ -110,12 +116,18 @@ app.put('/checkIn', async (req, res) => {
     });
 });
 app.put('/outtime', async (req, res) => {
+    
+    //remove console
+    
     console.log("sdff", req.body)
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         var dbo = db.db("demodatabase");
         var myquery = { emailid: req.body.Email };
         var newvalues = { $set: { time: req.body.time, notess: req.body.notess } };
+        
+        //Remove unnecessary code which is not used 
+        
         // var newquery ={notes: req.body.notes};
         dbo.collection("emps").updateOne(myquery, newvalues, function (err, result) {
             if (err) throw err;
